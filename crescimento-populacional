@@ -1,0 +1,38 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Dados fictícios: População em milhares
+data_base = {
+    "Ano": [2014, 2016, 2018, 2020, 2022, 2024],
+    "Cidade A": [60, 80, 100, 120, 130, 135],
+    "Cidade B": [50, 70, 90, 110, 120, 125],
+    "Cidade C": [55, 75, 95, 115, 125, 130],
+}
+
+# Criando o DataFrame
+df_base = pd.DataFrame(data_base)
+
+# Configurações para gráfico de barras
+x = np.arange(len(df_base["Ano"]))  # Posições no eixo x
+width = 0.25  # Largura das barras
+
+plt.figure(figsize=(12, 6))
+
+# Barras para cada cidade
+plt.bar(x - width, df_base["Cidade A"], width, label="Cidade A")
+plt.bar(x, df_base["Cidade B"], width, label="Cidade B")
+plt.bar(x + width, df_base["Cidade C"], width, label="Cidade C")
+
+# Destacando o período de explosão migratória
+plt.axvspan(1.5, 3.5, color="yellow", alpha=0.2, label="Explosão Migratória")
+
+# Configurações do gráfico
+plt.title("Evolução do Crescimento Populacional em Cidades do Interior (2014-2024)")
+plt.xlabel("Ano")
+plt.ylabel("População (milhares)")
+plt.xticks(ticks=x, labels=df_base["Ano"])
+plt.legend()
+plt.grid(axis="y", linestyle="--", alpha=0.7)
+plt.tight_layout()
+plt.show()
